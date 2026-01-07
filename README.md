@@ -93,6 +93,7 @@ bismark_methylation_extractor \
   --counts \
   --cytosine_report \
   --CX \
+  --genome_folder /path/to/bismark_genome_folder \
   alignment/sample_R1_bismark_bt2_pe.deduplicated.bam
 ```
 ### What it does:
