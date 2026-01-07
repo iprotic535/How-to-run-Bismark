@@ -91,6 +91,8 @@ bismark_methylation_extractor \
   --comprehensive \
   --bedGraph \
   --counts \
+  --cytosine_report \
+  --CX \
   alignment/sample_R1_bismark_bt2_pe.deduplicated.bam
 ```
 ### What it does:
