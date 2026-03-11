@@ -39,12 +39,23 @@ conda activate bismark_env
 
 ## 🧪 Workflow
 
-### 1. Quality Control
+### 1. Prefetch Data
+```bash
+prefetch SRA00000
+```
+
+
+### 2. Download SRA 
+```bash
+fasterq-dump SRA00000 --split-files  #if it's paired-end read, the reads will be divided into two files because of the command --split-files. 
+```
+
+### 3. Quality Control
 ```bash
 fastqc data/sample_R1.fastq.gz data/sample_R2.fastq.gz
 ```
 
-### 2. Prepare Reference Genome
+### 4. Prepare Reference Genome
 ```bash
 bismark_genome_preparation --bowtie2 reference/
 ```
@@ -57,7 +68,7 @@ bismark_genome_preparation --bowtie2 reference/
 
 ---
 
-### 3. Alignment
+### 5. Alignment
 ```bash
 bismark --genome reference/ -1 data/sample_R1.fastq.gz -2 data/sample_R2.fastq.gz -o alignment/
 ```
@@ -71,7 +82,7 @@ bismark --genome reference/ -1 data/sample_R1.fastq.gz -2 data/sample_R2.fastq.g
 
 ---
 
-### 4. Deduplication (if paired-end)
+### 6. Deduplication (if paired-end)
 ```bash
 deduplicate_bismark --bam alignment/sample_R1_bismark_bt2_pe.bam
 ```
@@ -84,7 +95,7 @@ deduplicate_bismark --bam alignment/sample_R1_bismark_bt2_pe.bam
 
 ---
 
-### 5. Methylation Extraction
+### 7. Methylation Extraction
 ```bash
 bismark_methylation_extractor \
   --paired-end \
@@ -106,7 +117,7 @@ bismark_methylation_extractor \
 
 ---
 
-### 6. Summary Report
+### 8. Summary Report
 ```bash
 bismark2report
 ```
